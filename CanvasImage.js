@@ -1,4 +1,4 @@
-class CanvasImage {
+export default class CanvasImage {
   constructor(canvas, width, height){
     //canvas -> actual canvas DOM object
     //width  -> pixel width of image
@@ -8,10 +8,16 @@ class CanvasImage {
     this.width = width;
     this.height = height;
     
-    this.data = new ArrayBuffer(x * y);
+    this._rawData = new ArrayBuffer(x * y);
+    this.data = new Uint8ClampedArray(this._rawData);
+  }
+  
+  //This will replace write_tga_file
+  render(){
+    this.context.putImageData(this.data, 0, 0);
   }
   
   set(x, y, color){
-    this.data[(y * this.width) + x] = color;
+    this.set(color, [(y * this.width) + x]);
   }
 }

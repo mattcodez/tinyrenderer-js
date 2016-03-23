@@ -10,8 +10,8 @@ class CanvasImage {
     this.context = canvas.getContext('2d');
 
     //TODO:
-    //let imageData = ctxS.getImageData(0, 0, 512, 640);
-    //let data = imageData.data;
+    this.canvas_imageData = this.context.getImageData(0, 0, width, height);
+    this.canvas_data = this.canvas_imageData.data;
 
     this.width = width;
     this.height = height;
@@ -22,7 +22,8 @@ class CanvasImage {
 
   //This will replace write_tga_file
   render(){
-    this.context.putImageData(this.data, 0, 0);
+    this.canvas_data.set(this.data);
+    this.context.putImageData(this.canvas_imageData, 0, 0);
   }
 
   set(x, y, color){

@@ -2,7 +2,13 @@
 <html>
 <body>
   <canvas id="renderPort"></canvas>
-  
+
+  <script src="../../CanvasImage.js"></script>
   <script src="main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      init(document.getElementById('renderPort'));
+    });
+  </script>
 </body>
 </html>

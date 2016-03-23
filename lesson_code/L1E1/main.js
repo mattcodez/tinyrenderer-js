@@ -1,5 +1,4 @@
 "use strict";
-import CanvasImage from 'CanvasImage';
 
 const white = [255, 255, 255, 255];
 const red   = [255, 0,   0,   255];

@@ -27,6 +27,11 @@ class CanvasImage {
   }
 
   set(x, y, color){
-    this.data[(y * this.width) + x] = color;
+    //x, y represent pixels but this.data is currently indexed by color
+    const pixelIndex = ((y * this.width) + x) * 4;
+    this.data[pixelIndex] = color[0];
+    this.data[pixelIndex + 1] = color[1];
+    this.data[pixelIndex + 2] = color[2];
+    this.data[pixelIndex + 3] = color[3];
   }
 }

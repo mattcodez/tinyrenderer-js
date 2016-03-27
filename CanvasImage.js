@@ -1,6 +1,10 @@
 "use strict";
 
 class CanvasImage {
+  static get bytespp(){
+    return 4; //pretty sure we don't have a choice here
+  }
+  
   constructor(canvas, width, height){
     //canvas -> actual canvas DOM object
     //width  -> pixel width of image
@@ -16,7 +20,9 @@ class CanvasImage {
     this.width = width;
     this.height = height;
 
-    this._rawData = new ArrayBuffer(this.width * this.height);
+    this._rawData = new ArrayBuffer(
+      this.width * this.height * CanvasImage.bytespp
+    );
     this.data = new Uint8ClampedArray(this._rawData);
 
     this.fillBlack();

@@ -14,6 +14,6 @@ function line(x0, y0, x1, y1, image, color) {
 function init(canvasEl) {
   const image = new CanvasImage(canvasEl, 100, 100);
   line(13, 20, 80, 40, image, white);
-  //image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
+  image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
   image.render();
 }

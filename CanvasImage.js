@@ -38,18 +38,40 @@ class CanvasImage {
     }
   }
 
+  flip_vertically(){
+    //TODO: There's probably a lot better way to do this
+    //consider having multiple views for the data buffer,
+    //if we're not doing math on the colors, why not use
+    //a Uint32 instead?
+
+    for (let i = 0; i < (this.data.length / 2); i+=4){
+      const swapR = this.data[i];
+      const swapG = this.data[i+1];
+      const swapB = this.data[i+2];
+      const swapA = this.data[i+3];
+
+      this.data[i]   = this.data[this.data.length - i - 1];
+      this.data[i+1] = this.data[this.data.length - i - 2];
+      this.data[i+2] = this.data[this.data.length - i - 3];
+      this.data[i+3] = this.data[this.data.length - i - 4];
+
+      this.data[this.data.length - i - 1] = swapR;
+      this.data[this.data.length - i - 2] = swapG;
+      this.data[this.data.length - i - 3] = swapB;
+      this.data[this.data.length - i - 4] = swapA;
+    }
+  }
+
   //This will replace write_tga_file
   render(){
     this.canvas_data.set(this.data);
     this.context.putImageData(this.canvas_imageData, 0, 0);
   }
 
-  //TODO: FIXME: Numbers sent as x and y are not integers, need to allow
-  //for decimals somehow
   set(x, y, color){
     //x -> int
     //y -> int
-    //x, y represent pixels but this.data is currently indexed by color
+
     const pixelIndex = ((y * this.width) + x) * CanvasImage.bytespp;
     this.data[pixelIndex] = color[0];
     this.data[pixelIndex + 1] = color[1];

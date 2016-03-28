@@ -5,8 +5,8 @@ const red   = [255, 0,   0,   255];
 
 function line(x0, y0, x1, y1, image, color) {
   for (let t=0; t<1; t+=0.01) {
-    let x = x0*(1-t) + x1*t;
-    let y = y0*(1-t) + y1*t;
+    const x = parseInt(x0*(1-t) + x1*t, 10);
+    const y = parseInt(y0*(1-t) + y1*t, 10);
     image.set(x, y, color);
   }
 }

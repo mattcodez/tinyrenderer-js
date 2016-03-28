@@ -4,7 +4,7 @@ class CanvasImage {
   static get bytespp(){
     return 4; //pretty sure we don't have a choice here
   }
-  
+
   constructor(canvas, width, height){
     //canvas -> actual canvas DOM object
     //width  -> pixel width of image
@@ -47,8 +47,10 @@ class CanvasImage {
   //TODO: FIXME: Numbers sent as x and y are not integers, need to allow
   //for decimals somehow
   set(x, y, color){
+    //x -> int
+    //y -> int
     //x, y represent pixels but this.data is currently indexed by color
-    const pixelIndex = ((y * this.width) + x) * 4;
+    const pixelIndex = ((y * this.width) + x) * CanvasImage.bytespp;
     this.data[pixelIndex] = color[0];
     this.data[pixelIndex + 1] = color[1];
     this.data[pixelIndex + 2] = color[2];

@@ -50,15 +50,15 @@ class CanvasImage {
       const swapB = this.data[i+2];
       const swapA = this.data[i+3];
 
-      this.data[i]   = this.data[this.data.length - i - 1];
-      this.data[i+1] = this.data[this.data.length - i - 2];
-      this.data[i+2] = this.data[this.data.length - i - 3];
-      this.data[i+3] = this.data[this.data.length - i - 4];
+      this.data[i]   = this.data[this.data.length - i - 4];
+      this.data[i+1] = this.data[this.data.length - i - 3];
+      this.data[i+2] = this.data[this.data.length - i - 2];
+      this.data[i+3] = this.data[this.data.length - i - 1];
 
-      this.data[this.data.length - i - 1] = swapR;
-      this.data[this.data.length - i - 2] = swapG;
-      this.data[this.data.length - i - 3] = swapB;
-      this.data[this.data.length - i - 4] = swapA;
+      this.data[this.data.length - i - 4] = swapR;
+      this.data[this.data.length - i - 3] = swapG;
+      this.data[this.data.length - i - 2] = swapB;
+      this.data[this.data.length - i - 1] = swapA;
     }
   }
 

@@ -45,13 +45,14 @@ class CanvasImage {
     //a Uint32 instead?
 
     //loop through each line
+    const bytesPerLine = this.width * CanvasImage.bytespp;
     for (let i = 0; i < (this.height / 2); i++){
-      const topStart = i * this.width * CanvasImage.bytespp;
-      const bottomStart = (this.height - i) * this.width * CanvasImage.bytespp;
+      const topStart = i * bytesPerLine;
+      const bottomStart = (this.height - i) * bytesPerLine;
 
       //loop through colors in each line
       //order is the same so we can go by color rather than pixel
-      for (let j = 0; j < this.width; j++){
+      for (let j = 0; j < bytesPerLine; j++){
         const swap = this.data[topStart + j];
         this.data[topStart + j] = this.data[bottomStart + j];
         this.data[bottomStart + j] = swap;

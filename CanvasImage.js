@@ -44,21 +44,19 @@ class CanvasImage {
     //if we're not doing math on the colors, why not use
     //a Uint32 instead?
 
-    for (let i = 0; i < (this.data.length / 2); i+=4){
-      const swapR = this.data[i];
-      const swapG = this.data[i+1];
-      const swapB = this.data[i+2];
-      const swapA = this.data[i+3];
+    //loop through each line
+    for (let i = 0; i < (this.height / 2); i++){
+      const topStart = i * this.width * CanvasImage.bytespp;
+      const bottomStart = (this.height - i) * this.width * CanvasImage.bytespp;
 
-      this.data[i]   = this.data[this.data.length - i - 4];
-      this.data[i+1] = this.data[this.data.length - i - 3];
-      this.data[i+2] = this.data[this.data.length - i - 2];
-      this.data[i+3] = this.data[this.data.length - i - 1];
+      //loop through colors in each line
+      //order is the same so we can go by color rather than pixel
+      for (let j = 0; j < this.width; j++){
+        const swap = this.data[topStart + j];
+        this.data[topStart + j] = this.data[bottomStart + j];
+        this.data[bottomStart + j] = swap;
+      }
 
-      this.data[this.data.length - i - 4] = swapR;
-      this.data[this.data.length - i - 3] = swapG;
-      this.data[this.data.length - i - 2] = swapB;
-      this.data[this.data.length - i - 1] = swapA;
     }
   }
 

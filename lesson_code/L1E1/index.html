@@ -12,7 +12,14 @@
   <script>
     document.addEventListener("DOMContentLoaded", function(event) {
       init(document.getElementById('renderPort'));
-      var myCodeMirror = CodeMirror(document.body);
+      fetch('main.js')
+      .then(r => r.text())
+      .then(mainjs => {
+        const myCodeMirror = CodeMirror(document.body, {
+          value: mainjs,
+          mode:  "javascript"
+        });
+      })
     });
   </script>
 </body>

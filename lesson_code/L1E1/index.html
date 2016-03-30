@@ -1,13 +1,18 @@
 <!DOCTYPE>
 <html>
+<head>
+  <link rel="stylesheet" href="../../codemirror.css">
+</head>
 <body>
   <canvas id="renderPort"></canvas>
 
+  <script src="../../codemirror-compressed.js"></script>
   <script src="../../CanvasImage.js"></script>
   <script src="main.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function(event) {
       init(document.getElementById('renderPort'));
+      var myCodeMirror = CodeMirror(document.body);
     });
   </script>
 </body>

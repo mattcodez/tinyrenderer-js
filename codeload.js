@@ -7,7 +7,10 @@ document.getElementById('chooseCode').addEventListener('change', e => {
   retrieveCode(`lesson_code/${opt.value}/main.js`);
 });
 
-let myCodeMirror;
+const myCodeMirror = CodeMirror(document.body, {
+  mode:  "javascript"
+});
+
 function runCode(e){
   try{
     let newInit = eval(myCodeMirror.getValue());
@@ -22,11 +25,7 @@ function retrieveCode(path){
   fetch(path)
   .then(r => r.text())
   .then(mainjs => {
-    //TODO: only create one CodeMirror instance 
-    myCodeMirror = CodeMirror(document.body, {
-      value: mainjs,
-      mode:  "javascript"
-    });
+    myCodeMirror.setValue(mainjs);
 
     runCode(mainjs);
   });
